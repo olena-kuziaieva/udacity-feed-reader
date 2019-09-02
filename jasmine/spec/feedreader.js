@@ -33,34 +33,29 @@ $(function() {
             }
         });
 
-        it('names are defined', function(){
-           for(var feed of allFeeds) {
-               expect(feed.name).toBeDefined();
-               expect(feed.name.length).not.toBe(0);
-           }
+        it('names are defined', function() {
+            for(var feed of allFeeds) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+            }
         });
     });
 
     describe('The menu', function() {
-        it('elemnt is hidden by default', function(){
+        it('elemnt is hidden by default', function() {
+            expect(document.body.classList.contains('menu-hidden')).toBe(true);
+        });
+
+        it('changes visibility', function() {
+            var menuIconElement = document.getElementsByClassName('menu-icon-link')[0];
+            menuIconElement.click();
+            expect(document.body.classList.contains('menu-hidden')).not.toBe(true);
+            menuIconElement.click();
             expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
     });
     
-    /* TODO: Write a new test suite named "The menu" */
-
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
-
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
-
+    
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
