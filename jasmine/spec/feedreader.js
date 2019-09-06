@@ -52,7 +52,9 @@ $(function() {
     
     describe('New Feed Selection', function() {
         it('the content changes', function(done) {
-            var contentLoaded = function() {
+            // load feed(0) asynchronously and in callback load feed(1)
+            // asynchronously again
+            loadFeed(0, function() {
                  // save result of loading feeds
                 var loadFeedZeroResult = document.querySelector('.feed').innerHTML; 
                 
@@ -61,10 +63,11 @@ $(function() {
                     
                     // compare saved result with new result
                     expect(loadFeedZeroResult !== loadFeedFirstResult).toBe(true);
+                    
+                    // signal asynchronous test that work is done
                     done();
                 });
-            };
-            loadFeed(0, contentLoaded);
+            });
         });
     });
 }());
